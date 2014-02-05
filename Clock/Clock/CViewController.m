@@ -19,7 +19,7 @@
     NSDateFormatter *dateFormatter;
     NSTimeInterval diff;
     NSTimeInterval comparedTimeInterval;
-    NSTimer *timer;
+    NSTimer *timer, *reloadTimer;
 }
 
 @end
@@ -98,5 +98,10 @@
                                                userInfo:nil
                                                 repeats:YES];
     }
+    //Update time from server after each 5 minutes
+    [self performSelector:@selector(startLoadingTime)
+               withObject:nil
+               afterDelay:300];
+    counter = kRetryLimitation;
 }
 @end
